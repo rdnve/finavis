@@ -1,4 +1,4 @@
-# another unofficial API for some financial visualization website
+## another unofficial API for some financial visualization website
 
 ![https://www.python.org/downloads/release/python-3120/](https://img.shields.io/badge/python-3.12-blue.svg)
 ![https://github.com/python-poetry/poetry/releases/tag/1.4.2/](https://img.shields.io/badge/poetry-1.4.2-blue.svg)
