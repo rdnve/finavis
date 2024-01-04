@@ -1,7 +1,7 @@
 import re
 import typing as ty
 
-from finavis.library import EnumChoices as EC
+from finavis.library import EnumChoices as EChoices
 from finavis.library import (
     ExchangeChoices,
     IndexChoices,
@@ -58,11 +58,11 @@ class Screener:
     ) -> None:
         """Initialization and validation"""
 
-        self.exchange = exchange.value if isinstance(exchange, EC) else exchange
-        self.index = index.value if isinstance(index, EC) else index
-        self.signal = signal.value if isinstance(signal, EC) else signal
-        self.table = table.value if isinstance(table, EC) else table
-        self.order_by = order_by.value if isinstance(order_by, EC) else order_by
+        self.exchange = exchange.value if isinstance(exchange, EChoices) else exchange
+        self.index = index.value if isinstance(index, EChoices) else index
+        self.signal = signal.value if isinstance(signal, EChoices) else signal
+        self.table = table.value if isinstance(table, EChoices) else table
+        self.order_by = order_by.value if isinstance(order_by, EChoices) else order_by
 
         for arg_name, arg_choices in self._args_validate_mapping.items():
             value: ty.Optional[str] = getattr(self, arg_name)
