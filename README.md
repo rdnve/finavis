@@ -2,7 +2,8 @@
 
 [![python3120](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
 [![poetry](https://img.shields.io/badge/poetry-1.4.2-blue.svg)](https://github.com/python-poetry/poetry/releases/tag/1.4.2/)
-[![pypi](https://img.shields.io/badge/finavis-0.0.11-green.svg)](https://pypi.org/project/finavis/)
+[![pypi](https://img.shields.io/badge/finavis-0.0.12-green.svg)](https://pypi.org/project/finavis/)
+
 ### installation
 
 ```bash
