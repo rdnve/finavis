@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "finavis"
-version = "0.0.1"
+version = "0.0.6"
 description = "Another unofficial API for some financial visualization website"
 authors = ["serje ù <pleaseanswermeserjeu@icloud.com>"]
 license = "MIT"
@@ -20,6 +20,7 @@ mypy = "^1.8.0"
 isort = "^5.13.2"
 types-lxml = "^2023.10.21"
 types-requests = "^2.31.0.20231231"
+python-dateutil = "^2.8.2"
 
 [tool.isort]
 multi_line_output = 3
