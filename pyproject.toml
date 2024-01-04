@@ -1,10 +1,12 @@
 [tool.poetry]
 name = "finavis"
-version = "0.0.6"
+version = "0.0.7"
 description = "Another unofficial API for some financial visualization website"
 authors = ["serje ù <pleaseanswermeserjeu@icloud.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [{include = "finavis"}]
+repository = "https://github.com/rdnve/finavis"
 
 [tool.poetry.dependencies]
 python = "^3.12"
