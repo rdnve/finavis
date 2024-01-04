@@ -1,13 +1,13 @@
 ## another unofficial api for [finviz.com](https://finviz.com)
 
-![https://www.python.org/downloads/release/python-3120/](https://img.shields.io/badge/python-3.12-blue.svg)
-![https://github.com/python-poetry/poetry/releases/tag/1.4.2/](https://img.shields.io/badge/poetry-1.4.2-blue.svg)
-![https://pypi.org/project/finavis/](https://badge.fury.io/py/finavis.svg)
+[![python3120](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
+[![poetry](https://img.shields.io/badge/poetry-1.4.2-blue.svg)](https://github.com/python-poetry/poetry/releases/tag/1.4.2/)
+[![pypi](https://badge.fury.io/py/finavis.svg)](https://pypi.org/project/finavis/)
 
 ### installation
 
 ```bash
-$ pip install -U finavis
+$ python -m pip install -U finavis
 ```
 
 ### getting a quote
