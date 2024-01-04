@@ -1,4 +1,4 @@
-## another unofficial API for some financial visualization website
+## another unofficial api for [finviz.com](https://finviz.com)
 
 ![https://www.python.org/downloads/release/python-3120/](https://img.shields.io/badge/python-3.12-blue.svg)
 ![https://github.com/python-poetry/poetry/releases/tag/1.4.2/](https://img.shields.io/badge/poetry-1.4.2-blue.svg)
@@ -6,7 +6,7 @@
 ### installation
 
 ```bash
-$ pip install -U finavis && export FINAVIS_BASE_URL=https://
+$ pip install -U finavis
 ```
 
 ### getting a quote
@@ -42,3 +42,7 @@ for index, overview in enumerate(screener()):
 
 ### disclaimer
 using this library to acquire data from some website is against their "terms of service" and *robots.txt*; use it responsibly and at your own risk, this library was built purely for educational purposes.
+
+
+### important information
+any quote data displayed on the [finviz.com](https://finviz.com) website is delayed by 15 minutes for nasdaq and 20 minutes for nyse/amex; this api should **NOT be used** for real-time trading, it's primary purpose for research in educational purposes.
