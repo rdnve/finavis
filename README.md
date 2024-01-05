@@ -2,7 +2,7 @@
 
 [![python3120](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
 [![poetry](https://img.shields.io/badge/poetry-1.4.2-blue.svg)](https://github.com/python-poetry/poetry/releases/tag/1.4.2/)
-[![pypi](https://img.shields.io/badge/finavis-0.0.15-green.svg)](https://pypi.org/project/finavis/)
+[![pypi](https://img.shields.io/badge/finavis-0.0.16-green.svg)](https://pypi.org/project/finavis/)
 
 ### installation
 
@@ -10,7 +10,7 @@
 $ python -m pip install -U finavis
 ```
 
-### getting a quote
+### getting a single quote
 ```python
 import typing as ty
 
@@ -24,6 +24,17 @@ print(f"Ticker: {quote.ticker}, price: {quote.price}, w/ EPS {quote.eps_ttm}")
 
 # extract attributes to dictionary
 data: ty.Dict[str, str] = quote.to_dict()
+```
+
+### getting a several quotes
+```python
+import typing as ty
+
+from finavis import get_quotes
+
+tickers: ty.Tuple[str, ...] = ("AAPL", "INTC", "QCOM")
+for quote in get_quotes(tickers=tickers):
+    print(f"Ticker: {quote.ticker}, price: {quote.price}, w/ EPS {quote.eps_ttm}")
 ```
 
 ### getting a screener w/ objects
