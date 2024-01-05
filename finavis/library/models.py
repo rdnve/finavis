@@ -114,7 +114,6 @@ class Quote(AbstractModel):
     industry: str
     country: str
     exchange: str
-    index: ty.Tuple[str, ...]
     p_e: Decimal
     eps_ttm: Decimal
     insider_own: Decimal
@@ -177,7 +176,6 @@ class Quote(AbstractModel):
     prev_close: Decimal
     is_shortable: bool
     lt_debt_eq: Decimal
-    earnings_at: dt.date
     earnings_market: str
     payout: Decimal
     avg_volume: Decimal
@@ -188,6 +186,8 @@ class Quote(AbstractModel):
     sma200: Decimal
     volume: Decimal
     change: Decimal
+    index: ty.Optional[ty.Tuple[str, ...]] = None
+    earnings_at: ty.Optional[dt.date] = None
 
     def to_dict(self) -> ty.Dict[str, str]:
         raw: ty.Dict[str, str] = super().to_dict()
