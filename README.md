@@ -65,4 +65,4 @@ for index, overview in enumerate(screener()):
 using this library to acquire data from some website is against their "terms of service" and *robots.txt*; use it responsibly and at your own risk, this library was built purely for educational purposes.
 
 ### important information
-any quote data displayed on the [finviz.com](https://finviz.com) website is delayed by 15 minutes for nasdaq and 20 minutes for nyse/amex; this api should **NOT be used** for real-time trading, it's primary purpose for research in educational purposes.
+any quote data displayed on the [finviz.com](https://finviz.com) website is delayed by 15 minutes for nasdaq/nyse/amex; this api should **NOT be used** for real-time trading, it's primary purpose for research in educational purposes.
