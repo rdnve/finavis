@@ -1,7 +1,6 @@
 import functools
 import typing as ty
 
-from finavis.exception import NotFound
 from finavis.library import Quote
 from finavis.utils import make_request, text_to_label
 
@@ -23,11 +22,7 @@ def get_quote(ticker: str) -> Quote:
         path="/quote.ashx",
         query_params={"t": str(ticker)},
     )
-
-    try:
-        title: "HtmlElement" = raw.cssselect('div[class="fv-container py-2.5"]')[0]
-    except IndexError:
-        raise NotFound(f"{ticker=!s} not found")
+    title: "HtmlElement" = raw.cssselect('div[class="fv-container py-2.5"]')[0]
 
     ticker = title.cssselect(
         'h1[class="js-recent-quote-ticker quote-header_ticker-wrapper_ticker"]'

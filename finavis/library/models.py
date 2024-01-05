@@ -4,8 +4,13 @@ from copy import deepcopy
 import attr
 
 
+class AbstractModel:
+    def to_dict(self) -> ty.Dict[str, str]:
+        return deepcopy(self.__dict__)
+
+
 @attr.s(auto_attribs=True)
-class Quote:
+class Quote(AbstractModel):
     """
     Model of quote.
 
@@ -171,7 +176,7 @@ class Quote:
     change: str
 
     def to_dict(self) -> ty.Dict[str, str]:
-        raw: ty.Dict[str, str] = deepcopy(self.__dict__)
+        raw: ty.Dict[str, str] = super().to_dict()
         for key, value in self.__dict__.items():
             if key.startswith("ttm_"):
                 raw["52w_" + key.split("ttm_")[-1]] = value
@@ -179,7 +184,7 @@ class Quote:
 
 
 @attr.s(auto_attribs=True)
-class Overview:
+class Overview(AbstractModel):
     """
     Model of overview table in screener.
 

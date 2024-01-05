@@ -1,14 +1,22 @@
 import json
 import logging
-import sys
 import typing as ty
 from urllib.parse import urljoin
 
 from lxml import html
+from lxml.etree import ParserError
 from requests import Response, Session
 from requests.adapters import HTTPAdapter
+from requests.exceptions import ConnectionError, HTTPError
 from urllib3 import Retry
 from user_agent import generate_user_agent  # type: ignore
+
+from finavis.exceptions import (
+    RequestDocumentIsEmptyException,
+    RequestMaxRetryException,
+    RequestUnhandledException,
+    TickerNotFoundException,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -56,18 +64,36 @@ def make_request(
 
     params: ty.Dict[str, ty.Any] = dict(
         method="GET",
-        url=urljoin("https://finviz.com/", path),
+        url=urljoin("http://finviz.com/", path),
         params=query_params or {},
+        allow_redirects=False,
+        timeout=3,
     )
 
-    sys.stdout.write(
-        f"[INFO] make_request = {params['method']} {params['url']} "
+    logger.debug(
+        f"make_request = {params['method']} {params['url']} "
         f"query_params={json.dumps(params['params'])} : "
     )
 
     session: Session = get_session()
-    response: Response = session.request(**params)
 
-    sys.stdout.write(f"DONE status_code={response.status_code}\n")
+    try:
+        response: Response = session.request(**params)
+        response.raise_for_status()
+    except (HTTPError, ConnectionError) as e:
+        if isinstance(e, ConnectionError) and "Max retries exceeded" in str(e):
+            raise RequestMaxRetryException(e)
+        elif isinstance(e, HTTPError) and "404" in str(e) and "/quote.ashx" in str(e):
+            raise TickerNotFoundException(e)
+        else:
+            raise RequestUnhandledException(e)
+    else:
+        logger.debug(f"make_request = DONE status_code={response.status_code}\n")
 
-    return html.fromstring(html=response.text)
+    try:
+        return html.fromstring(html=response.text)
+    except ParserError as e:
+        if "document is empty" in str(e).lower():
+            raise RequestDocumentIsEmptyException(e)
+        else:
+            raise RequestUnhandledException(e)
