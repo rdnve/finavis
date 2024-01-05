@@ -1,5 +1,6 @@
 import json
 import logging
+import sys
 import typing as ty
 from urllib.parse import urljoin
 
@@ -59,13 +60,14 @@ def make_request(
         params=query_params or {},
     )
 
-    logger.warning(f"make_request = {json.dumps(params)}")
+    sys.stdout.write(
+        f"[INFO] make_request = {params['method']} {params['url']} "
+        f"query_params={json.dumps(params['params'])} : "
+    )
 
     session: Session = get_session()
     response: Response = session.request(**params)
 
-    logger.warning(
-        f"status_code={response.status_code}, data={response.text[:10]} (truncated...)"
-    )
+    sys.stdout.write(f"DONE status_code={response.status_code}\n")
 
     return html.fromstring(html=response.text)

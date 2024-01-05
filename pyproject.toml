@@ -5,7 +5,7 @@ description = "another unofficial api for some financial visualization website"
 authors = ["serje ù <pleaseanswermeserjeu@icloud.com>"]
 license = "MIT"
 readme = "README.md"
-keywords = ["finviz", "finance", "datascience", "scrapper", "markets", "stock", "quote", "ticker"]
+keywords = ["finance", "datascience", "scrapper", "markets", "stock", "quote", "ticker", "finviz"]
 repository = "https://github.com/rdnve/finavis"
 packages = [{include = "finavis"}]
 classifiers = [
