@@ -1,4 +1,4 @@
-from .functions import intspace, roundd, text_to_label
+from .functions import text_to_decimal, text_to_label
 from .sessions import (
     DEFAULT_REQUEST_TIMEOUT,
     DEFAULT_RETRY_ALLOWED_METHODS,

@@ -1,29 +1,6 @@
-import math
-import re
 import string
 import typing as ty
-
-
-def intspace(value: ty.Union[int, float, str]) -> str:
-    """Separate value by whitespace"""
-
-    original = str(value)
-    new = re.sub(r"^(-?\d+)(\d{3})", r"\g<1> \g<2>", original)
-
-    if original == new:
-        return new
-    else:
-        return intspace(value=new)
-
-
-def roundd(n: ty.Union[int, float], decimals: int = 0) -> float:
-    """Normal round of float"""
-
-    expo_n = n * 10**decimals
-    if abs(expo_n) - abs(math.floor(expo_n)) < 0.5:
-        return math.floor(expo_n) / 10**decimals
-
-    return math.ceil(expo_n) / 10**decimals
+from decimal import Decimal
 
 
 def text_to_label(value: str) -> ty.Optional[str]:
@@ -59,3 +36,18 @@ def text_to_label(value: str) -> ty.Optional[str]:
         line = line.replace("52w", "ttm")
 
     return line
+
+
+def text_to_decimal(value: str) -> ty.Optional[Decimal]:
+    """Helper func"""
+
+    if value is None:
+        return None
+
+    mapp = {
+        "M": Decimal("1000000"),
+        "B": Decimal("1000000000"),
+    }
+
+    sym: str = value[-1]
+    return Decimal(str(int(Decimal(value.split(sym)[0]) * mapp[sym])))

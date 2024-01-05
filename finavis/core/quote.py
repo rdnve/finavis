@@ -65,7 +65,7 @@ def get_quote(ticker: str) -> Quote:
 
             data[label] = value
 
-    return Quote(**data)
+    return Quote.from_response(raw=data)
 
 
 def get_quotes(tickers: ty.Tuple[str, ...]) -> ty.Tuple[Quote]:
