@@ -59,9 +59,9 @@ def get_quote(ticker: str) -> Quote:
                 name = "EPS growth next Y"
                 label = ty.cast(str, text_to_label(value=name))
 
-            value = field_data.text_content().strip()  # type: ignore
+            value = field_data.text_content().strip()  # type: ignore[assignment]
             if value == "-":
-                value = None  # type: ignore
+                value = None  # type: ignore[assignment]
 
             data[label] = value
 

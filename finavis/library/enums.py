@@ -7,6 +7,10 @@ class EnumWithValues(StrEnum):
     def values(cls) -> ty.Tuple[str, ...]:
         return tuple(map(lambda c: str(c), cls))
 
+    @classmethod
+    def keys(cls) -> ty.Tuple[str, ...]:
+        return tuple(map(lambda c: c.name, cls))  # type: ignore[attr-defined]
+
 
 class Exchange(EnumWithValues):
     AMEX = "exch_amex"

@@ -9,7 +9,7 @@ from requests import Response, Session
 from requests.adapters import HTTPAdapter
 from requests.exceptions import ConnectionError, HTTPError
 from urllib3 import Retry
-from user_agent import generate_user_agent  # type: ignore
+from user_agent import generate_user_agent  # type: ignore[import-untyped]
 
 from finavis.exceptions import (
     RequestDocumentIsEmptyException,
