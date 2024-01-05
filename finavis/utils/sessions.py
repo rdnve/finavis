@@ -7,7 +7,7 @@ from lxml import html
 from requests import Response, Session
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
-from user_agent import generate_user_agent
+from user_agent import generate_user_agent  # type: ignore
 
 logger = logging.getLogger(__name__)
 

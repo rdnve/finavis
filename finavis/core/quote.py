@@ -71,3 +71,13 @@ def get_quote(ticker: str) -> Quote:
             data[label] = value
 
     return Quote(**data)
+
+
+def get_quotes(tickers: ty.Tuple[str]) -> ty.Tuple[Quote]:
+    """Receive info by tickers"""
+
+    result: ty.Any = list()
+    for ticker in tickers:
+        result.append(get_quote(ticker=ticker))
+
+    return tuple(result)

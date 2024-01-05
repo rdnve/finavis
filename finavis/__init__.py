@@ -1,1 +1,1 @@
-from .core import Screener, get_quote
+from .core import Screener, get_quote, get_quotes
