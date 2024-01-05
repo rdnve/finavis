@@ -2,7 +2,7 @@
 
 [![python-latest](https://img.shields.io/pypi/pyversions/finavis?logo=python&logoColor=FFE873)](https://www.python.org/downloads/)
 [![pypi](https://img.shields.io/badge/pypi-0.0.29-blue?logo=pypi&logoColor=FFE873)](https://pypi.org/project/finavis/)
-[![status](https://img.shields.io/pypi/status/finavis)](https://github.com/rdnve/finavis/blob/master/LICENSE)
+[![status](https://img.shields.io/pypi/status/finavis)](https://pypi.org/project/finavis/)
 [![pypi_downloads](https://img.shields.io/pypi/dm/finavis)](https://pypi.org/project/finavis/)
 [![license](https://img.shields.io/pypi/l/finavis)](https://github.com/rdnve/finavis/blob/master/LICENSE)
 
