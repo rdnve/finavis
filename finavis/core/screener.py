@@ -145,7 +145,7 @@ class Screener:
             )
         )
 
-        return Overview(**kwargs)
+        return Overview.from_response(raw=kwargs)
 
     @staticmethod
     def _get_total_pages(total: float) -> int:

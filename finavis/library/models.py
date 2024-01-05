@@ -3,10 +3,10 @@ from __future__ import annotations
 import datetime as dt
 import typing as ty
 from copy import deepcopy
-from decimal import Decimal
 
 import attr
 
+from finavis.library.types import Decimal
 from finavis.utils import text_to_decimal
 
 
@@ -17,6 +17,10 @@ class AbstractModel:
     @classmethod
     def from_response(cls, raw: ty.Dict[str, ty.Any]) -> ty.Any:
         raise NotImplemented
+
+    @property
+    def is_filled(self) -> bool:
+        return bool(list(filter(None, self.to_dict().values())))
 
 
 @attr.s(auto_attribs=True)
@@ -168,13 +172,11 @@ class Quote(AbstractModel):
     rsi_14: Decimal
     volatility_w: Decimal
     volatility_m: Decimal
-    is_optionable: bool
     debt_eq: Decimal
     eps_q_q: Decimal
     profit_margin: Decimal
     rel_volume: Decimal
     prev_close: Decimal
-    is_shortable: bool
     lt_debt_eq: Decimal
     earnings_market: str
     payout: Decimal
@@ -186,6 +188,8 @@ class Quote(AbstractModel):
     sma200: Decimal
     volume: Decimal
     change: Decimal
+    is_optionable: ty.Optional[bool] = None
+    is_shortable: ty.Optional[bool] = None
     index: ty.Optional[ty.Tuple[str, ...]] = None
     earnings_at: ty.Optional[dt.date] = None
 
@@ -276,11 +280,11 @@ class Overview(AbstractModel):
     :param str sector: Sector
     :param str industry: Industry
     :param str country: Country
-    :param str market_cap: Market capitalization
-    :param str p_e: Price-to-Earnings (ttm)
-    :param str price: Current stock price
-    :param str change: Performance (today)
-    :param str volume: Volume
+    :param Decimal market_cap: Market capitalization
+    :param Decimal p_e: Price-to-Earnings (ttm)
+    :param Decimal price: Current stock price
+    :param Decimal change: Performance (today)
+    :param Decimal volume: Volume
     """
 
     ticker: str
@@ -288,8 +292,38 @@ class Overview(AbstractModel):
     sector: str
     industry: str
     country: str
-    market_cap: str
-    p_e: str
-    price: str
-    change: str
-    volume: str
+    market_cap: Decimal
+    p_e: Decimal
+    price: Decimal
+    change: Decimal
+    volume: Decimal
+
+    @classmethod
+    def from_response(cls, raw: ty.Dict[str, ty.Any]) -> Overview:
+        """Make class from raw_data"""
+
+        data: ty.Dict[str, ty.Any] = dict()
+        for field_name, field_type in cls.__annotations__.items():
+            value: ty.Any = raw.get(field_name)
+
+            if field_type == "Decimal":
+                if value is None:
+                    data[field_name] = value
+                    continue
+
+                if value.endswith("%"):
+                    data[field_name] = Decimal(value.split("%")[0])
+                    continue
+
+                if value.endswith(("M", "B")):
+                    data[field_name] = text_to_decimal(value=value)
+                    continue
+
+                if "," in value:
+                    value = value.replace(",", "")
+
+                data[field_name] = Decimal(value)
+            else:
+                data[field_name] = value
+
+        return Overview(**data)

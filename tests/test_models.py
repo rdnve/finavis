@@ -1,7 +1,7 @@
 import datetime as dt
-from decimal import Decimal
 
 from finavis.library.models import Quote
+from finavis.library.types import Decimal
 
 from .indexes import EXAMPLE_QUOTE_RAW
 
@@ -27,3 +27,4 @@ def test_quote_building_from_raw_data() -> None:
     assert isinstance(quote.to_dict(), dict)
     assert "52w_high" in quote.to_dict()
     assert quote.to_dict()["52w_high"] == quote.ttm_high
+    assert quote.is_filled is True

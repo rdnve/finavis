@@ -1,8 +1,8 @@
 import typing as ty
-from decimal import Decimal, InvalidOperation
 
 import pytest
 
+from finavis.library.types import Decimal, InvalidOperation
 from finavis.utils import text_to_decimal, text_to_label
 
 

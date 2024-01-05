@@ -1,6 +1,7 @@
 import string
 import typing as ty
-from decimal import Decimal
+
+from finavis.library.types import Decimal
 
 
 def text_to_label(value: str) -> ty.Optional[str]:
