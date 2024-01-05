@@ -49,12 +49,12 @@ for quote in get_quotes(tickers=tickers):
 ### getting a screener w/ objects
 ```python
 from finavis import Screener
-from finavis.library import ExchangeChoices, IndexChoices, OrderChoices
+from finavis.library import Exchange, Index, Order
 
 screener: Screener = Screener(
-    exchange=ExchangeChoices.NASDAQ,
-    index=IndexChoices.SP500,
-    order_by=OrderChoices.CHANGE_ASC,
+    exchange=Exchange.NASDAQ,
+    index=Index.SP500,
+    order_by=Order.CHANGE_ASC,
 )
 
 for index, overview in enumerate(screener()):

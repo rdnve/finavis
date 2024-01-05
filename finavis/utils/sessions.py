@@ -64,7 +64,7 @@ def make_request(
 
     params: ty.Dict[str, ty.Any] = dict(
         method="GET",
-        url=urljoin("http://finviz.com/", path),
+        url=urljoin("https://finviz.com/", path),
         params=query_params or {},
         allow_redirects=False,
         timeout=3,
@@ -72,7 +72,7 @@ def make_request(
 
     logger.debug(
         f"make_request = {params['method']} {params['url']} "
-        f"query_params={json.dumps(params['params'])} : "
+        f"query_params={json.dumps(params['params'])}"
     )
 
     session: Session = get_session()
@@ -88,7 +88,7 @@ def make_request(
         else:
             raise RequestUnhandledException(e)
     else:
-        logger.debug(f"make_request = DONE status_code={response.status_code}\n")
+        logger.debug(f"make_request = DONE status_code={response.status_code}")
 
     try:
         return html.fromstring(html=response.text)

@@ -1,27 +1,27 @@
 import typing as ty
-from enum import Enum
+from enum import StrEnum
 
 
-class EnumChoices(Enum):
+class EnumWithValues(StrEnum):
     @classmethod
     def values(cls) -> ty.Tuple[str, ...]:
-        return tuple(map(lambda c: c.value, cls))
+        return tuple(map(lambda c: str(c), cls))
 
 
-class ExchangeChoices(EnumChoices):
+class Exchange(EnumWithValues):
     AMEX = "exch_amex"
     NASDAQ = "exch_nasd"
     NYSE = "exch_nyse"
 
 
-class IndexChoices(EnumChoices):
+class Index(EnumWithValues):
     SP500 = "idx_sp500"
     NASDAQ100 = "idx_ndx"
     DJIA = "idx_dji"
     RUSSELL2000 = "idx_rut"
 
 
-class OrderChoices(EnumChoices):
+class Order(EnumWithValues):
     TICKER_ASC = "ticker"
     TICKER_DESC = "-ticker"
     COMPANY_ASC = "company"
@@ -44,7 +44,7 @@ class OrderChoices(EnumChoices):
     VOLUME_DESC = "-volume"
 
 
-class SignalChoices(EnumChoices):
+class Signal(EnumWithValues):
     TOP_GAINERS = "ta_topgainers"
     TOP_LOSERS = "ta_toplosers"
     NEW_HIGH = "ta_newhigh"
@@ -80,5 +80,5 @@ class SignalChoices(EnumChoices):
     HEAD_AND_SHOULDERS_INVERSE = "ta_p_headandshouldersinv"
 
 
-class TableChoices(EnumChoices):
+class Table(EnumWithValues):
     OVERVIEW = "111"

@@ -1,15 +1,7 @@
 import re
 import typing as ty
 
-from finavis.library import EnumChoices as EChoices
-from finavis.library import (
-    ExchangeChoices,
-    IndexChoices,
-    OrderChoices,
-    Overview,
-    SignalChoices,
-    TableChoices,
-)
+from finavis.library import Exchange, Index, Order, Overview, Signal, Table
 from finavis.utils.sessions import make_request
 
 if ty.TYPE_CHECKING:
@@ -20,13 +12,13 @@ class Screener:
     """Screen! Screen! Screener!"""
 
     _args_validate_mapping: ty.Dict[str, ty.Any] = dict(
-        exchange=ExchangeChoices,
-        index=IndexChoices,
-        signal=SignalChoices,
-        table=TableChoices,
-        order_by=OrderChoices,
+        exchange=Exchange,
+        index=Index,
+        signal=Signal,
+        table=Table,
+        order_by=Order,
     )
-    _screener_mapping: ty.Dict[str, ty.Any] = {TableChoices.OVERVIEW.value: Overview}
+    _screener_mapping: ty.Dict[str, ty.Any] = {Table.OVERVIEW.value: Overview}
     _per_pages: int = 20
     _items: ty.List[Overview] = list()
 
@@ -50,19 +42,19 @@ class Screener:
 
     def __init__(
         self,
-        exchange: ty.Optional[ty.Union[ExchangeChoices, str]] = None,
-        index: ty.Optional[ty.Union[IndexChoices, str]] = None,
-        signal: ty.Optional[ty.Union[SignalChoices, str]] = None,
-        table: ty.Optional[ty.Union[TableChoices, str]] = TableChoices.OVERVIEW,
-        order_by: ty.Union[OrderChoices, str] = OrderChoices.TICKER_ASC,
+        exchange: ty.Optional[ty.Union[Exchange, str]] = None,
+        index: ty.Optional[ty.Union[Index, str]] = None,
+        signal: ty.Optional[ty.Union[Signal, str]] = None,
+        table: ty.Optional[ty.Union[Table, str]] = Table.OVERVIEW,
+        order_by: ty.Union[Order, str] = Order.TICKER_ASC,
     ) -> None:
         """Initialization and validation"""
 
-        self.exchange = exchange.value if isinstance(exchange, EChoices) else exchange
-        self.index = index.value if isinstance(index, EChoices) else index
-        self.signal = signal.value if isinstance(signal, EChoices) else signal
-        self.table = table.value if isinstance(table, EChoices) else table
-        self.order_by = order_by.value if isinstance(order_by, EChoices) else order_by
+        self.exchange = str(exchange) if exchange is not None else None
+        self.index = str(index) if index is not None else None
+        self.signal = str(signal) if signal is not None else None
+        self.table = str(table) if table is not None else None
+        self.order_by = str(order_by) if order_by is not None else None
 
         for arg_name, arg_choices in self._args_validate_mapping.items():
             value: ty.Optional[str] = getattr(self, arg_name)
