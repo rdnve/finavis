@@ -1,8 +1,10 @@
 ## another unofficial api for [finviz.com](https://finviz.com)
 
-[![python3120](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
-[![poetry](https://img.shields.io/badge/poetry-1.4.2-blue.svg)](https://github.com/python-poetry/poetry/releases/tag/1.4.2/)
-[![pypi](https://img.shields.io/badge/pypi-0.0.16-green.svg)](https://pypi.org/project/finavis/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/finavis?logo=python&logoColor=FFE873)
+![PyPI - Version](https://img.shields.io/pypi/v/finavis?logo=pypi&logoColor=FFE873&color=blue)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/finavis)
+![PyPI - License](https://img.shields.io/pypi/l/finavis)
+
 
 ### installation
 
