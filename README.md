@@ -7,7 +7,7 @@
 ### installation
 
 ```bash
-# via pypi (recommend)
+# via pypi (recommended)
 $ python -m pip install -U finavis
 
 # or using github w/ pip
