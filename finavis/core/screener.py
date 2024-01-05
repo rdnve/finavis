@@ -108,7 +108,7 @@ class Screener:
         if not self.total:
             try:
                 total_raw = raw.get_element_by_id("screener-total")
-                total_raw = total_raw.text_content()  # type: ignore
+                total_raw = total_raw.text_content()  # type: ignore[assignment]
             except IndexError:
                 return None
             else:
@@ -128,7 +128,7 @@ class Screener:
             return None
 
         for raw_item in raw.cssselect("tr")[3:]:
-            key: str = self._screener_mapping[self.table].__name__.lower()  # type: ignore
+            key: str = self._screener_mapping[self.table].__name__.lower()  # type: ignore[index]
             yield getattr(self, f"_get_{key}")(raw=raw_item)
 
         if page < self.pages:
