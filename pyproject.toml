@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "finavis"
-version = "0.0.33"
+version = "0.0.35"
 description = "another unofficial api for some financial visualization website"
 authors = ["serje ù <pleaseanswermeserjeu@icloud.com>"]
 license = "MIT"
