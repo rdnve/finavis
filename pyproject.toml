@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "finavis"
-version = "0.0.36"
+version = "0.0.37"
 description = "another unofficial api for some financial visualization website"
 authors = ["serje ù <pleaseanswermeserjeu@icloud.com>"]
 license = "MIT"
@@ -20,21 +20,22 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.12"
-requests = {extras = ["socks"], version = "~2.31"}
-user-agent = "^0.1.10"
+python = "~3.12"
+requests = {extras = ["socks"], version = "~2.32"}
+user-agent = "~0.1"
 lxml = "~4"
-attrs = "^23.2.0"
-cssselect = "^1.2.0"
+attrs = "~23.2"
+cssselect = "~1.2"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.12.0"
+black = "^25.12.0"
 mypy = "^1.8.0"
 isort = "^5.13.2"
 types-lxml = "^2023.10.21"
 types-requests = "^2.31.0.20231231"
 python-dateutil = "^2.8.2"
 pytest = "^7.4.4"
+types-python-dateutil = "^2.9.0.20251115"
 
 [tool.isort]
 multi_line_output = 3

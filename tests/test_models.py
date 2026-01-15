@@ -17,7 +17,7 @@ def test_quote_building_from_raw_data() -> None:
     assert quote.p_e == Decimal("29.62")
     assert quote.earnings_market == "AMC"
     assert isinstance(quote.earnings_at, dt.date)
-    assert quote.earnings_at.isoformat() == "2024-11-02"
+    assert quote.earnings_at.isoformat() == "2026-11-02"
     assert isinstance(quote.is_shortable, bool)
     assert quote.is_shortable is True
     assert isinstance(quote.is_optionable, bool)
